@@ -1,8 +1,9 @@
 
 CFLAGS="-Wall -Wextra -Wundef -Wold-style-definition -Wstrict-prototypes -Wpedantic --std=c99"
+CC=clang
 
 build() {
-	clang $CFLAGS -o reduce src/reduce.c
+	$CC $CFLAGS -o reduce src/reduce.c
 }
 
 sanitizer-build() {
