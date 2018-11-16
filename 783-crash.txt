@@ -1,0 +1,15 @@
+rjnagel@Roberts-MacBook-Pro ~/git/vfs $ ./reduce RSST/anc/ring16.conf
+Checking configuration number 1
+
+
+   This has ring-size 16, so there are 7174454 colourings total,
+   and 18155816 balanced signed matchings.
+
+   There are 139480 colourings that extend to the configuration.
+
+            remaining               remaining balanced
+           colourings               signed matchings
+
+              7034974Abort trap: 6
+rjnagel@Roberts-MacBook-Pro ~/git/vfs $ 
+
