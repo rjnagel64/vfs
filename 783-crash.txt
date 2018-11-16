@@ -1,4 +1,4 @@
-rjnagel@Roberts-MacBook-Pro ~/git/vfs $ ./reduce RSST/anc/ring16.conf
+rjnagel@Roberts-MacBook-Pro ~/git/vfs $ ./reduce 783.conf
 Checking configuration number 1
 
 
