@@ -29,10 +29,19 @@ EOF
   source $outdir/compile.sh
 }
 
-run_reduce() {
-}
-
 run_discharge() {
+  local outdir=$1
+  for n in 5 6 7 8 9 10 11; do
+    presentation_file=RSST/anc/p${n}_2822
+    configuration_file=RSST/anc/U_2822.conf
+    rules_file=RSST/anc/L_42
+    stdout_file=$outdir/discharge${n}-stdout.txt
+    stderr_file=$outdir/discharge${n}-stderr.txt
+
+    time (
+      ./discharge $presentation_file $configuration_file $rules_file 0 1
+    ) >$stdout_file 2>$stderr_file
+  done
 }
 
 record_results() {
@@ -49,8 +58,6 @@ main() {
   record_system $outdir
   echo "Compiling program"
   build $outdir
-  echo "Running reduce"
-  run_reduce $outdir
   echo "Running discharge"
   run_discharge $outdir
   echo "Recording results"
