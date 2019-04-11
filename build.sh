@@ -29,10 +29,14 @@ EOF
   source $outdir/compile.sh
 }
 
-run_reduce() {
+get_ring16() {
+  local outdir=$1
+  sed -n -e '/^783$/,/^$/p' >$outdir/ring16.conf RSST/anc/U_2822.conf
 }
 
-run_discharge() {
+run_reduce() {
+  local outdir=$1
+  time (./reduce $outdir/ring16.conf) >$outdir/reduce-stdout.txt 2>$outdir/reduce-stderr.txt
 }
 
 record_results() {
@@ -50,9 +54,8 @@ main() {
   echo "Compiling program"
   build $outdir
   echo "Running reduce"
+  get_ring16 $outdir
   run_reduce $outdir
-  echo "Running discharge"
-  run_discharge $outdir
   echo "Recording results"
   record_results $outdir
 }
