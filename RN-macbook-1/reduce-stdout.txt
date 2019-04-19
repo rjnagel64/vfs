@@ -1,0 +1,18 @@
+
+
+   This has ring-size 16, so there are 7174454 colourings total,
+   and 0 balanced signed matchings.
+
+   There are 139480 colourings that extend to the configuration.
+
+            remaining               remaining balanced
+           colourings               signed matchings
+
+              7034974New deepest augment: 1
+New deepest augment: 2
+New deepest augment: 3
+New deepest augment: 4
+New deepest augment: 5
+New deepest augment: 6
+New deepest augment: 7
+New deepest augment: 8

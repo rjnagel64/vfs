@@ -1,0 +1,11 @@
+RSST/anc/reduce.c:10:1: warning: '/*' within block comment [-Wcomment]
+/* This is part I of two programs that serve as supplements to the paper `The
+^
+RSST/anc/reduce.c:73:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+main(argc, argv)
+^
+RSST/anc/reduce.c:141:66: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]
+      printf("Configuration %d: maximum augment depth was %d\n", count, max_augment_depth);
+                            ~~                                   ^~~~~
+                            %ld
+3 warnings generated.
