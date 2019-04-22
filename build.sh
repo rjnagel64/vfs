@@ -30,9 +30,8 @@ EOF
 }
 
 run_reduce() {
-}
-
-run_discharge() {
+  local outdir=$1
+  time (./reduce RSST/anc/U_2822.conf) >$outdir/reduce-stdout.txt 2>$outdir/reduce-stderr.txt
 }
 
 record_results() {
@@ -51,8 +50,6 @@ main() {
   build $outdir
   echo "Running reduce"
   run_reduce $outdir
-  echo "Running discharge"
-  run_discharge $outdir
   echo "Recording results"
   record_results $outdir
 }

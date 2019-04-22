@@ -25,6 +25,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define WEIGHT_SIZE 16 // RN: Value is a best guess. Other code from JPS indicates
+		       // that WEIGHT_SIZE = 10 may work for U_2822.conf.
+
 typedef long tp_confmat[VERTS][DEG];
 typedef long tp_angle[EDGES][5];
 typedef long tp_edgeno[EDGES][EDGES];
@@ -65,6 +68,11 @@ void ReadErr();
 #endif
 
 
+// RN: Used to instrument the reduction process to
+// see how deeply 'augment()' recurses.
+static int max_augment_depth = 0;
+
+
 main(argc, argv)
 int argc;
 char *argv[];
@@ -98,6 +106,9 @@ char *argv[];
       exit(44);
    }
    for (count = 0; !ReadConf(graph, fp, NULL); count++) {
+      // RN: Reset the counter for a new reduction.
+      max_augment_depth = 0;
+
       findangles(graph, angle, diffangle, sameangle, contract);
       /* "findangles" fills in the arrays "angle","diffangle","sameangle" and
        * "contract" from the input "graph". "angle" will be used to compute
@@ -129,6 +140,11 @@ char *argv[];
       checkcontract(live, nlive, diffangle, sameangle, contract, power);
       /* This verifies that the set claimed to be a contract for the
        * configuration really is. */
+
+      // RN: Record the augment depth, if it is interesting
+      if (max_augment_depth >= 8) {
+         printf("Configuration %d: augment depth %d >= 8 (would crash if not patched)\n", count, max_augment_depth);
+      }
    }
    (void) fclose(fp);
    free(live);
@@ -147,7 +163,7 @@ char *live, *real;
  * whether all associated colourings belong to "live". It writes the answers
  * in the bits of the characters of "real". */
 {
-   long a, b, n, interval[10], *weight[8], nreal;
+   long a, b, n, interval[10], *weight[WEIGHT_SIZE], nreal;
    long matchweight[MAXRING + 1][MAXRING + 1][4], *mw, realterm; // jps
    char bit;
 
@@ -214,7 +230,7 @@ char *live, *real;
 
 void
 augment(n, interval, depth, weight, matchweight, live, real, pnreal, ring, basecol, on, pbit, prealterm, nchar)
-long n, interval[10], depth, *weight[8], matchweight[MAXRING + 1][MAXRING + 1][4], *pnreal, ring, // jps
+long n, interval[10], depth, *weight[WEIGHT_SIZE], matchweight[MAXRING + 1][MAXRING + 1][4], *pnreal, ring, // jps
 basecol, on, *prealterm, nchar;
 char *live, *real, *pbit;
 
@@ -225,6 +241,11 @@ char *live, *real, *pbit;
  * "live". */
 {
    long h, i, j, r, newinterval[10], newn, lower, upper;
+
+   // RN: update the maximum depth attained of 'augment()'.
+   if (depth > max_augment_depth) {
+      max_augment_depth = depth;
+   }
 
    checkreality(depth, weight, live, real, pnreal, ring, basecol, on, pbit, prealterm, nchar);
    depth++;
@@ -256,7 +277,7 @@ char *live, *real, *pbit;
 
 void
 checkreality(depth, weight, live, real, pnreal, ring, basecol, on, pbit, prealterm, nchar)
-long depth, *weight[8], *pnreal, ring, basecol, on, *prealterm, nchar;
+long depth, *weight[WEIGHT_SIZE], *pnreal, ring, basecol, on, *prealterm, nchar;
 char *live, *real, *pbit;
 
 /* For a given matching M, it runs through all signings, and checks which of
@@ -266,7 +287,7 @@ char *live, *real, *pbit;
  * associated colourings; it is zero for matchings not incident with "ring".
  * "on" is nonzero iff the matching is incident with "ring". */
 {
-   long i, k, nbits, choice[8], col, parity;
+   long i, k, nbits, choice[WEIGHT_SIZE], col, parity;
    unsigned long left;
 
    nbits = 1 << (depth - 1);
@@ -311,7 +332,7 @@ char *live, *real, *pbit;
 
 long
 stillreal(col, choice, depth, live, on)
-long col, choice[8], depth, on;
+long col, choice[WEIGHT_SIZE], depth, on;
 char *live;
 
 /* Given a signed matching, this checks if all associated colourings are in
