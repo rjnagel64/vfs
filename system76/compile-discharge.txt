@@ -1,0 +1,1 @@
+system76/compile.sh: line 2: cc: command not found
