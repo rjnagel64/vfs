@@ -1,0 +1,8 @@
+RSST/anc/reduce.c:76:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ main(argc, argv)
+ ^~~~
+RSST/anc/reduce.c: In function ‘main’:
+RSST/anc/reduce.c:146:33: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
+          printf("Configuration %d: augment depth %d >= 8 (would crash if not patched)\n", count, max_augment_depth);
+                                ~^
+                                %ld
