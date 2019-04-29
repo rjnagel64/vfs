@@ -1,1 +1,3 @@
-system76/compile.sh: line 1: cc: command not found
+RSST/anc/reduce.c:71:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ main(argc, argv)
+ ^~~~
