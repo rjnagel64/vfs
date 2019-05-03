@@ -49,7 +49,6 @@ main() {
   echo "Compiling program"
   build $outdir
   echo "Running reduce"
-  get_ring16 $outdir
   run_reduce $outdir
   echo "Recording results"
   record_results $outdir
