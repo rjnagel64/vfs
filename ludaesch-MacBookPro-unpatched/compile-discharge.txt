@@ -1,0 +1,40 @@
+RSST/anc/discharge.c:10:1: warning: '/*' within block comment [-Wcomment]
+/* This is part II of two programs that serve as supplements to the paper
+^
+RSST/anc/discharge.c:157:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+main(ac, av)
+^
+RSST/anc/discharge.c:186:14: warning: implicitly declaring library function 'strcpy' with type 'char *(char *, const char *)' [-Wimplicit-function-declaration]
+      (void) strcpy(fname, "present7");
+             ^
+RSST/anc/discharge.c:186:14: note: include the header <string.h> or explicitly provide a declaration for 'strcpy'
+RSST/anc/discharge.c:220:4: warning: format specifies type 'int' but the argument has type 'unsigned long' [-Wformat]
+          (MAXLEV + 1) * sizeof(tp_axle), (MAXSYM + 1) * sizeof(tp_outlet));
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RSST/anc/discharge.c:220:36: warning: format specifies type 'int' but the argument has type 'unsigned long' [-Wformat]
+          (MAXLEV + 1) * sizeof(tp_axle), (MAXSYM + 1) * sizeof(tp_outlet));
+                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RSST/anc/discharge.c:831:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+Reduce(A, lineno, print)
+^
+RSST/anc/discharge.c:852:80: warning: format specifies type 'int' but the argument has type 'unsigned long' [-Wformat]
+         (void) fprintf(stderr, "Insufficient memory. Additional %d KBytes needed\n", (int) CONFS * sizeof(tp_question) / 1024);
+                                                                 ~~                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                 %lu
+RSST/anc/discharge.c:857:95: warning: format specifies type 'int' but the argument has type 'unsigned long' [-Wformat]
+         (void) printf("Not enough memory to store unavoidable set. Additional %d KBytes needed.\n", (int) CONFS * sizeof(tp_confmat) / 1024);
+                                                                               ~~                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                               %lu
+RSST/anc/discharge.c:1086:3: warning: add explicit braces to avoid dangling else [-Wdangling-else]
+         else
+         ^
+RSST/anc/discharge.c:1823:19: warning: expression result unused [-Wunused-value]
+         (void) (stderr, "More than %d entries in edgelist needed\n", MAXELIST);
+                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RSST/anc/discharge.c:1835:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+RootedSubConf(degree, adjmat, question, image, x, y, clockwise)
+^
+RSST/anc/discharge.c:1887:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+SubConf(adjmat, degree, question, edgelist, image)
+^
+12 warnings generated.

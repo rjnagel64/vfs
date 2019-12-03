@@ -1,0 +1,5 @@
+./build.sh: line 37: 12021 Abort trap: 6           ./reduce $outdir/ring16.conf
+
+real	0m0.926s
+user	0m0.920s
+sys	0m0.005s
